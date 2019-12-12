@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
     private TextView tvDialog;
     private TextView tvView;
     private TextView tvView2;
-    private View mPopupContentView;
+    private View mContentView;
     private Context mContext ;
     private int mVer = VerticalPosition.CENTER;
     private int mHor = HorizontalPosition.CENTER;
@@ -35,8 +35,8 @@ public class MainActivity extends Activity {
 
         tvDialog = findViewById(R.id.tv_dialog);
         tvView = findViewById(R.id.tv_view);
-        mPopupContentView = getLayoutInflater().inflate(R.layout.dialog_pop_1, null);
-        tvView2 = mPopupContentView.findViewById(R.id.tv_pop_view);
+        mContentView = getLayoutInflater().inflate(R.layout.dialog_pop_1, null);
+        tvView2 = mContentView.findViewById(R.id.tv_pop_view);
         mContext = this;
         tvView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,10 +103,12 @@ public class MainActivity extends Activity {
 
     private void toDialog(){
         SimplePopupWindow popupWindow = SimplePopupWindow.Builder
-                .build( this, mPopupContentView)
-                .setAlpha(0.4f)                   //背景灰度     默认全透明
-                .setOutsideTouchDismiss(true)    //点击外部消失  默认true（消失）
+                .build( this, mContentView)      //此处mContentView为显示dialog View
+                .setAlpha(0.6f)                   //默认全透明    背景灰度
+                .setOutsideTouchDismiss(true)    //默认true  点击外部消失
                 .createPopupWindow();
+        popupWindow.showAtAnchorView(tvView   //此处tvView为显示dialog根本此tvView来进行显示的位置
+                , VerticalPosition.CENTER, HorizontalPosition.CENTER);
         popupWindow.showAtAnchorView(tvView, mVer, mHor);
     }
 }
