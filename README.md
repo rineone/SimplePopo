@@ -1,6 +1,21 @@
 # SimplePopo
 根据view任意显示位置的popoWindows
 
+
+使用方法：
+```
+//在project的build.gradle中设置
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+ //在module的build.gradle中设置
+ dependencies {
+	        implementation 'com.github.rineone:SimplePopo:v1.0'
+	}
+```
 基本用法
 ```java
  SimplePopupWindow popupWindow = SimplePopupWindow.Builder
